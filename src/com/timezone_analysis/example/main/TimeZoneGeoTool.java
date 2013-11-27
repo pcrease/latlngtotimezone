@@ -27,6 +27,7 @@ public class TimeZoneGeoTool {
 		if (instance == null) {
 			instance = new TimeZoneGeoTool();
 			loadBoundaryData();
+			
 		}
 		return instance;
 	}
