@@ -46,7 +46,7 @@ public class TimeZoneGeoTool {
 		GeometryFactory fact = new GeometryFactory();
 
 		ShapeFile shapefile = new ShapeFile("." + File.separator + "tz_data",
-				"tz_gen_0.01").READ();
+				"tz").READ();
 
 		ShpShape.Type shape_type = shapefile.getSHP_shapeType();
 		// System.out.println("\nshape_type = " + shape_type);
