@@ -12,7 +12,7 @@ TimeZoneGeoTool timeZoneGeoTool = TimeZoneGeoTool.getTimeZoneGeoToolInstance();
 
 System.out.println(timeZoneGeoTool.getTimeZoneFromCoordinate(new Coordinate(2.3508, 48.8567))); //coords for Paris
 
-this will return Europe/Paris.
+this will return Europe/Paris, and could be then entered into a Java TimeZone object to create the correct dateitme form a UTC timestamp.
 
 Dependencies:
 
