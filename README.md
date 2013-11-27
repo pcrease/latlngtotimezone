@@ -8,7 +8,7 @@ The API consists of a single object that can be used to search for the time zone
 
 Example :
 
-TimeZoneGeoTool timeZoneGeoTool = TimeZoneGeoTool.getTimeZoneGeoToolInstance();
+TimeZoneGeoTool timeZoneGeoTool = TimeZoneGeoTool.getTimeZoneGeoToolInstance();/n
 String tz=timeZoneGeoTool.getTimeZoneFromCoordinate(new Coordinate(2.3508, 48.8567)); //coords for Paris
 
 this will return Europe/Paris.
