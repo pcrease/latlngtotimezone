@@ -15,7 +15,9 @@ public class Example {
 	public static void main(String[] args) throws Exception {
 		TimeZoneGeoTool timeZoneGeoTool = TimeZoneGeoTool.getTimeZoneGeoToolInstance();
 		String tz=timeZoneGeoTool.getTimeZoneFromCoordinate(new Coordinate(2.3508, 48.8567));
-	System.out.println(tz);
+		TimeZoneGeoTool timeZoneGeoTooal = TimeZoneGeoTool.getTimeZoneGeoToolInstance();
+		String tza=timeZoneGeoTooal.getTimeZoneFromCoordinate(new Coordinate(2.6508, 48.8567));
+	System.out.println(tz+" "+tza);
 	}
 
 }
