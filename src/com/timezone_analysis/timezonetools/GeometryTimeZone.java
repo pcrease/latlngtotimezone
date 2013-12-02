@@ -1,4 +1,4 @@
-package com.timezone_analysis.example.main;
+package com.timezone_analysis.timezonetools;
 
 import com.vividsolutions.jts.geom.MultiPolygon;
 

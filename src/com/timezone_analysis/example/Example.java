@@ -2,7 +2,7 @@ package com.timezone_analysis.example;
 
 import java.io.IOException;
 
-import com.timezone_analysis.example.main.TimeZoneGeoTool;
+import com.timezone_analysis.timezonetools.TimeZoneGeoTool;
 import com.vividsolutions.jts.geom.Coordinate;
 
 public class Example {
