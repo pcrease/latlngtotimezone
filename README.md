@@ -20,6 +20,11 @@ Dependencies:
 
 - The Java Topology Suite is used to build an rtree index to speed up queries, and perform geometric operations
 
+NOTE : the admin boundary data have been simplified using topojson with 0.4 preservation parameter, and converted back
+to shapefile. This could result in small imprecisions. To use your own data source, just add a shapefile boundary to the tz_data folder
+and alter the reference to the filename found in the TimeZoneGeoTool.java
+
+command to simplify used was = (topojson --cartesian -p --simplify-proportion 0.4 -o output.json tz.shp)
 
 TODO:
 
