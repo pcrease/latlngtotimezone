@@ -3,7 +3,7 @@ latlngtotimezone
 
 a java library that allows a latitude, longitude coordinates to be translated to a java timezone string. 
 
-The national boundary polygon data for this library comes from http://efele.net/maps/tz/world/, although the polygons have been simplified (~1km using Douglas-Peuker) to remove nodes and shrink the .jar size. However, if  greater specificity is required the shapefile in the /data folder can be changed to one that is preferred.
+The national boundary polygon data for this library comes from http://efele.net/maps/tz/world/, although the polygons have been simplified to remove nodes and shrink the .jar size (see NOTE below).
 The API consists of a single object that can be used to search for the time zone string using a pair of WGS84 longitude, latitude coordinates. NOTE: coordinate order is XY (Longitude, Latitude)
 
 Example :
