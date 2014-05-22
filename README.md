@@ -21,7 +21,7 @@ Example :
 		System.out.println("Admin name of timezone found = "+tz +". Offset in hours name of timezone found =  "+offsetHours);
 ```
 
-this will return Europe/Paris, and could be then entered into a Java TimeZone object (http://docs.oracle.com/javase/7/docs/api/java/util/TimeZone.html) to create the correct datetime from a UTC timestamp.
+this will return timezone Europe/Paris and offset 1.0, and could be then entered into the Java TimeZone or Calendar object of your choice (http://docs.oracle.com/javase/7/docs/api/java/util/TimeZone.html) to create the correct datetime from a UTC timestamp.
 
 Dependencies:
 
