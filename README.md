@@ -11,11 +11,11 @@ Example :
 ```
 	    TimeZoneGeoTool timeZoneGeoTool = new TimeZoneGeoTool();
 		timeZoneGeoTool.loadAdminBoundaryData();
-		String tz=timeZoneGeoTool.getTimeZoneFromCoordinate(new Coordinate(2.3508, 48.8567));//Paris
+		String tz=timeZoneGeoTool.getTimeZoneFromCoordinate(new LatLngCoordinate(48.8567,2.3508));//Paris
 		timeZoneGeoTool.unLoadAdminBoundaryData();
 		
 		timeZoneGeoTool.loadTimeOffsetData();
-        double offsetHours=timeZoneGeoTool.getOffsetFromCoordinate(new Coordinate(2.3508, 48.8567));//Paris
+        double offsetHours=timeZoneGeoTool.getOffsetFromCoordinate(new LatLngCoordinate(48.8567,2.3508 ));//Paris
         timeZoneGeoTool.unLoadTimeOffsetData();
 		
 		System.out.println("Admin name of timezone found = "+tz +". Offset in hours name of timezone found =  "+offsetHours);

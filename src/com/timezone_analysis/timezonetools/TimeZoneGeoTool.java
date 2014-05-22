@@ -27,12 +27,12 @@ public class TimeZoneGeoTool {
     private static GeometryTimeZoneList geometryTimeZoneList = new GeometryTimeZoneList();
     private static GeometryTimeOffsetList geometryTimeOffsetList = new GeometryTimeOffsetList();
 
-    public String getTimeZoneFromCoordinate(Coordinate coordinate) {
-        return geometryTimeZoneList.searchIndex(coordinate);
+    public String getTimeZoneFromCoordinate(LatLngCoordinate coordinate) {
+        return geometryTimeZoneList.searchIndex(coordinate.getCoordinate());
     }
     
-    public double getOffsetFromCoordinate(Coordinate coordinate) {
-        return geometryTimeOffsetList.searchIndex(coordinate);
+    public double getOffsetFromCoordinate(LatLngCoordinate coordinate) {
+        return geometryTimeOffsetList.searchIndex(coordinate.getCoordinate());
     }
 
     public void loadTimeOffsetData() throws Exception {
