@@ -8,7 +8,7 @@ The API consists of a single object class that can be used to search for the tim
 
 Example :
 
-```//example shows how to get the TimeZone string (e.g. Europe/Paris), and offset in hours for a lat,lng coordinate
+```
 	    TimeZoneGeoTool timeZoneGeoTool = new TimeZoneGeoTool();
 		timeZoneGeoTool.loadAdminBoundaryData();
 		String tz=timeZoneGeoTool.getTimeZoneFromCoordinate(new Coordinate(2.3508, 48.8567));//Paris
