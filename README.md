@@ -4,7 +4,7 @@ latlngtotimezone
 a java library that allows a latitude, longitude coordinates to be translated to a java timezone string or offset in hours. 
 
 The polygon data for this library comes from http://efele.net/maps/tz/world/, although the polygons have been simplified to remove nodes and shrink the .jar size (see NOTE below).
-The API consists of a single object class that can be used to search for the time zone string (Europe/London) or the offset in hours (+3.5) using a pair of WGS84 longitude, latitude coordinates. NOTE: coordinate order is XY (Longitude, Latitude)
+The API consists of a single object class that can be used to search for the time zone string or the offset in hours using a pair of WGS84 longitude, latitude coordinates. NOTE: coordinate order is XY (Longitude, Latitude)
 
 Example :
 
