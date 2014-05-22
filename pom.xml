@@ -15,20 +15,84 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.googlecode.addjars-maven-plugin</groupId>
+				<artifactId>addjars-maven-plugin</artifactId>
+				<version>1.0.5</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>add-jars</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>${basedir}/lib</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<!-- here the phase you need -->
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/tz_data</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/tz_data</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer">
+								</transformer>
+							</transformers>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<targetPath>${project.build.outputDirectory}/tz_data</targetPath>
+				<directory>${project.basedir}/tz_data</directory>
+			</resource>
+		</resources>
 	</build>
 	<dependencies>
 		<dependency>
 			<groupId>com.vividsolutions</groupId>
 			<artifactId>jts</artifactId>
 			<version>1.13</version>
-		</dependency>
-		<dependency>
-			<groupId>org.diewald_shapeFile</groupId>
-			<artifactId>diewald_shapeFile</artifactId>
-			<version>0.9.2</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/shapefileReader.jar</systemPath>
 		</dependency>
 	</dependencies>
 </project>

@@ -41,9 +41,9 @@ public class TimeZoneGeoTool {
         // "."+File.separator+"tz_data"+File.separator+"tz_gen_0.01.shp");
 
         GeometryFactory fact = new GeometryFactory();
-
-        ShapeFile shapefile = new ShapeFile("." + File.separator + "tz_data", "timezone").READ();
-
+        
+        //ShapeFile shapefile = new ShapeFile("." + File.separator + "tz_data", "timezone").READ();
+        ShapeFile shapefile = new ShapeFile(this.getClass().getClassLoader().getResource("tz_data").getPath(), "timezone").READ();
         ShpShape.Type shape_type = shapefile.getSHP_shapeType();
         // System.out.println("\nshape_type = " + shape_type);
 
@@ -118,7 +118,8 @@ public class TimeZoneGeoTool {
         GeometryFactory fact = new GeometryFactory();
 
         ShapeFile shapefile = new ShapeFile("." + File.separator + "tz_data", "tz").READ();
-
+        System.out.println(this.getClass().getClassLoader().getResource("tz_data").getPath());
+        //ShapeFile shapefile = new ShapeFile(this.getClass().getClassLoader().getResource("tz_data").getPath(), "tz").READ();
         ShpShape.Type shape_type = shapefile.getSHP_shapeType();
         // System.out.println("\nshape_type = " + shape_type);
 
