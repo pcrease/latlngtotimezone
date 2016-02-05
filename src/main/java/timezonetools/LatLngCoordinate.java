@@ -1,4 +1,4 @@
-package com.timezone_analysis.timezonetools;
+package main.java.timezonetools;
 
 import com.vividsolutions.jts.geom.Coordinate;
 

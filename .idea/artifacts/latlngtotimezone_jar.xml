@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="latlngtotimezone:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/latlngtotimezone_jar</output-path>
+    <root id="archive" name="latlngtotimezone.jar">
+      <element id="module-output" name="latlngtotimezone" />
+      <element id="module-output" name="diewald_shapeFileReader" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/vividsolutions/jts/1.13/jts-1.13.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

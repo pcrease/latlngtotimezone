@@ -1,14 +1,10 @@
-package com.timezone_analysis.timezonetools;
+package main.java.timezonetools;
+
+import com.vividsolutions.jts.geom.*;
+import com.vividsolutions.jts.index.strtree.STRtree;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.MultiPolygon;
-import com.vividsolutions.jts.geom.Point;
-import com.vividsolutions.jts.geom.Polygon;
-import com.vividsolutions.jts.index.strtree.STRtree;
 
 public class GeometryTimeZoneList extends ArrayList<GeometryTimeZone> {
 
