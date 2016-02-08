@@ -15,7 +15,6 @@ public class Example {
 		//example shows how to get the TimeZone string (e.g. Europe/Paris), and offset in hours for a lat,lng coordinate
 	    System.out.println("running example....");
 
-
 	    TimeZoneGeoTool timeZoneGeoTool = new TimeZoneGeoTool();
 		
 		timeZoneGeoTool.loadTimeOffsetGeoJsonData();
@@ -24,12 +23,6 @@ public class Example {
 		
 		System.out.println("Offset in hours name of timezone found =  "+offsetHours);
 
-
 	}
-
-    static String convertStreamToString(java.io.InputStream is) {
-        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
-    }
 
 }
