@@ -1,7 +1,7 @@
 latlngtotimezone
 ================
 
-a simple java library that allows a latitude, longitude coordinates to be translated to a java offset in hours. The library is released under an MIT License.
+A simple java library that allows a latitude, longitude coordinates to be translated to a java offset in hours. The library is released under an MIT License.
 
 The API consists of a single object class that can be used to search for the time zone string or the offset in hours using a pair of WGS84 latitude, longitude coordinates.
 Example :
@@ -17,7 +17,7 @@ Example :
 		System.out.println("Admin name of timezone found = "+tz +". Offset in hours name of timezone found =  "+offsetHours);
 ```
 
-this will return timezone Europe/Paris and offset 1.0, and could be then entered into the Java TimeZone or Calendar object of your choice (http://docs.oracle.com/javase/7/docs/api/java/util/TimeZone.html) to create the correct datetime from a UTC timestamp.
+this will return an offset in hours (1.0 for Paris), and could be then entered into the Java TimeZone or Calendar object of your choice (http://docs.oracle.com/javase/7/docs/api/java/util/TimeZone.html) to create the correct datetime from a UTC timestamp.
 
 a pre-compliled jar can be found in the /compiled_jar folder, otherwise the project can be built using Maven
 
