@@ -20,7 +20,7 @@ Example
 
 this will return an offset in hours (1.0 for Paris), and could be then entered into the Java TimeZone or Calendar object of your choice (http://docs.oracle.com/javase/7/docs/api/java/util/TimeZone.html) to create the correct datetime from a UTC timestamp.
 
-a pre-compliled jar can be found in the /compiled_jar folder, otherwise the project can be built using Maven
+a pre-compliled jar can be found in the /compiled_jar folder which contians the library API and the data all rolled up into a JAR. The project can be built using Maven tools.
 
 Dependencies:
 
