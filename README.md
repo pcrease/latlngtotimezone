@@ -24,6 +24,6 @@ a pre-compliled jar can be found in the /compiled_jar folder which contians the 
 
 Dependencies:
 
-- https://github.com/bjornharrtell/jts2geojson to read the geoJSON data.
+- https://github.com/bjornharrtell/jts2geojson to read the GeoJSON data.
 
 - The Java Topology Suite is used to build an rtree index to speed up queries, and perform geometric operations
