@@ -19,6 +19,8 @@ Example :
 
 this will return timezone Europe/Paris and offset 1.0, and could be then entered into the Java TimeZone or Calendar object of your choice (http://docs.oracle.com/javase/7/docs/api/java/util/TimeZone.html) to create the correct datetime from a UTC timestamp.
 
+a pre-compliled jar can be found in the /compiled_jar folder, otherwise the project can be built using Maven
+
 Dependencies:
 
 - https://github.com/bjornharrtell/jts2geojson to read the shapefile data.
