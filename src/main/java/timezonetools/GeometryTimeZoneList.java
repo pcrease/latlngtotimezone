@@ -12,7 +12,7 @@ public class GeometryTimeZoneList extends ArrayList<GeometryTimeZone> {
 	GeometryFactory fact = new GeometryFactory();
 
 	public void addToIndex(GeometryTimeZone geometryTimeZone) {
-		rtree.insert(geometryTimeZone.getMultiPolygon().getEnvelopeInternal(),
+		rtree.insert(geometryTimeZone.getGeometry().getEnvelopeInternal(),
 				geometryTimeZone);
 	}
 
@@ -21,7 +21,6 @@ public class GeometryTimeZoneList extends ArrayList<GeometryTimeZone> {
 	}
 
 	public String searchIndex(Coordinate coordinate) {
-
 		Point p = fact.createPoint(coordinate);
 		List hitList = rtree.query(p.getEnvelopeInternal());
 
@@ -36,7 +35,7 @@ public class GeometryTimeZoneList extends ArrayList<GeometryTimeZone> {
 		if (hitList.size() > 1) {
 			for (Object obj : hitList) {
 				GeometryTimeZone geometryTimeZone = (GeometryTimeZone) obj;
-				MultiPolygon mp = geometryTimeZone.getMultiPolygon();
+				Geometry mp = geometryTimeZone.getGeometry();
 
 				for (int o = 0; o < mp.getNumGeometries(); o++) {
 					Polygon poly = (Polygon) mp.getGeometryN(o);

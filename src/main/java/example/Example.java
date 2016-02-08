@@ -1,10 +1,9 @@
 package main.java.example;
 
-import main.java.LatLngCoordinate;
-import main.java.TimeZoneGeoTool;
+import main.java.timezonetools.LatLngCoordinate;
+import main.java.timezonetools.TimeZoneGeoTool;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 public class Example {
 
@@ -16,36 +15,10 @@ public class Example {
 		//example shows how to get the TimeZone string (e.g. Europe/Paris), and offset in hours for a lat,lng coordinate
 	    System.out.println("running example....");
 
-		String str = "";
-		StringBuffer buf = new StringBuffer();
-		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        InputStream result =  classloader.getResourceAsStream( "timezone_data/test.txt" );
-
-        String s = convertStreamToString(result);
-        System.out.println(s);
-        result.close();
-        //File file = new File( classloader.getSystemResource("timezone_data/test.txt").toString());
-
-
-		/*FileReader reader = null;
-		try {
-			reader = new FileReader(file);
-			char[] chars = new char[(int) file.length()];
-			reader.read(chars);
-			System.out.println(new String(chars));
-			reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if(reader !=null){reader.close();}
-		}*/
 
 	    TimeZoneGeoTool timeZoneGeoTool = new TimeZoneGeoTool();
-		timeZoneGeoTool.loadAdminBoundaryData();
-		String tz=timeZoneGeoTool.getTimeZoneFromCoordinate(new LatLngCoordinate(48.8567,2.3508));//Paris
-		timeZoneGeoTool.unLoadAdminBoundaryData();
 		
-		timeZoneGeoTool.loadTimeOffsetData();
+		timeZoneGeoTool.loadTimeOffsetGeoJsonData();
         double offsetHours=timeZoneGeoTool.getOffsetFromCoordinate(new LatLngCoordinate(48.8567,2.3508 ));//Paris
         timeZoneGeoTool.unLoadTimeOffsetData();
 		

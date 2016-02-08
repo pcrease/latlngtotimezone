@@ -1,19 +1,20 @@
 package main.java.timezonetools;
 
+import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.MultiPolygon;
 
 public class GeometryTimeZone {
 
-	private MultiPolygon multiPolygon;
+	private Geometry geom;
 	private String timeZone;
 	
-	public GeometryTimeZone(MultiPolygon multiPolygon,String timeZone){
-		this.multiPolygon=multiPolygon;
+	public GeometryTimeZone(Geometry geom,String timeZone){
+		this.geom=geom;
 		this.timeZone=timeZone;
 	}
 
-	public MultiPolygon getMultiPolygon() {
-		return multiPolygon;
+	public Geometry getGeometry() {
+		return geom;
 	}
 
 	public String getTimeZone() {

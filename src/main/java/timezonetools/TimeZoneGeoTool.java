@@ -1,11 +1,22 @@
 package main.java.timezonetools;
 
-import com.vividsolutions.jts.geom.*;
-import diewald_shapeFile.files.shp.shapeTypes.ShpPolygon;
-import diewald_shapeFile.files.shp.shapeTypes.ShpShape;
-import diewald_shapeFile.shapeFile.ShapeFile;
+
+
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.MultiPolygon;
+import com.vividsolutions.jts.geom.Polygon;
+import org.wololo.geojson.Feature;
+import org.wololo.geojson.FeatureCollection;
+import org.wololo.geojson.GeoJSONFactory;
+import org.wololo.jts2geojson.GeoJSONReader;
+
+import java.io.InputStream;
 
 public class TimeZoneGeoTool {
+
+    private final static String ZONE_KEY = "ZONE";
+    private final static String ID_KEY = "OID";
+
 
     private static TimeZoneGeoTool instance = null;
 
@@ -13,154 +24,46 @@ public class TimeZoneGeoTool {
 
     }
 
-    private static GeometryTimeZoneList geometryTimeZoneList = new GeometryTimeZoneList();
+
     private static GeometryTimeOffsetList geometryTimeOffsetList = new GeometryTimeOffsetList();
 
-    public String getTimeZoneFromCoordinate(LatLngCoordinate coordinate) {
-        return geometryTimeZoneList.searchIndex(coordinate.getCoordinate());
-    }
+
 
     public double getOffsetFromCoordinate(LatLngCoordinate coordinate) {
         return geometryTimeOffsetList.searchIndex(coordinate.getCoordinate());
     }
 
-    public void loadTimeOffsetData() throws Exception {
+    public void loadTimeOffsetGeoJsonData() throws Exception {
 
+            InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("timezone_data/timezone.geojson");
+            String geoJsonString = convertStreamToString(is);
 
-        GeometryFactory fact = new GeometryFactory();
-        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        //String path, String filename,ClassLoader classloader
-        //ShapeFile shapefile = new ShapeFile(classloader.getSystemResource("timezone_data").getPath(), "timezone",classloader).READ();
-         ShapeFile shapefile = new ShapeFile(this.getClass().getClassLoader().getResource("timezone_data").getPath(),"timezone",classloader).READ();
-        ShpShape.Type shape_type = shapefile.getSHP_shapeType();
+            FeatureCollection geoJSON=(FeatureCollection) GeoJSONFactory.create(geoJsonString);
 
-        int number_of_shapes = shapefile.getSHP_shapeCount();
-        int number_of_fields = shapefile.getDBF_fieldCount();
-
-        for (int i = 0; i < number_of_shapes; i++) {
-            MultiPolygon jtsPolygon;
-
-            ShpPolygon shape = shapefile.getSHP_shape(i);
-            String[] shape_info = shapefile.getDBF_record(i);
-
-            ShpShape.Type type = shape.getShapeType();
-            int number_of_vertices = shape.getNumberOfPoints();
-            int number_of_polygons = shape.getNumberOfParts();
-            int record_number = shape.getRecordNumber();
-
-            double[][][] listOfPolygons = shape.getPointsAs3DArray();
-
-            Polygon[] polygons = null;
-            for (int j = 0; j < listOfPolygons.length; j++) {
-                if (j == 0) {
-                    polygons = new Polygon[listOfPolygons.length];
-                }
-                Coordinate[] coordinates = null;
-
-                for (int h = 0; h < listOfPolygons[j].length; h++) {
-                    if (h == 0) {
-                        coordinates = new Coordinate[listOfPolygons[j].length];
-                    }
-
-                    coordinates[h] = (new Coordinate(listOfPolygons[j][h][0], listOfPolygons[j][h][1]));
-
-                }
-                LinearRing linear = fact.createLinearRing(coordinates);
-                polygons[j] = fact.createPolygon(linear, null);
-
+            for (Feature f:geoJSON.getFeatures()){
+                Double offsetHours = (Double)f.getProperties().get(ZONE_KEY);
+                GeoJSONReader reader = new GeoJSONReader();
+                Geometry g = reader.read(f.getGeometry());
+                GeometryTimeOffset gto = new GeometryTimeOffset(g, offsetHours);
+                geometryTimeOffsetList.addToIndex(gto);
             }
 
-            jtsPolygon = fact.createMultiPolygon(polygons);
-
-            double offset = Double.parseDouble(shape_info[0].trim());
-
-            GeometryTimeOffset gto = new GeometryTimeOffset(jtsPolygon, offset);
-
-            geometryTimeOffsetList.addToIndex(gto);
-
-        }
         geometryTimeOffsetList.buildIndex();
 
+
+
     }
+
+    static String convertStreamToString(java.io.InputStream is) {
+        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+        return s.hasNext() ? s.next() : "";
+    }
+
+
 
     public void unLoadTimeOffsetData() {
         geometryTimeOffsetList = null;
     }
 
-    public void loadAdminBoundaryData() throws Exception {
 
-        // FileInputStream is = new FileInputStream(
-        // "."+File.separator+"tz_data"+File.separator+"tz_gen_0.01.shp");
-
-        GeometryFactory fact = new GeometryFactory();
-
-        
-        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-
-        ShapeFile shapefile = new ShapeFile(classloader.getSystemResource("timezone_data").getPath(), "timezone",classloader).READ();
-        // ShapeFile shapefile = new ShapeFile(this.getClass().getClassLoader().getResource("tz_data").getPath(),
-        // "tz").READ();
-        ShpShape.Type shape_type = shapefile.getSHP_shapeType();
-        // System.out.println("\nshape_type = " + shape_type);
-
-        int number_of_shapes = shapefile.getSHP_shapeCount();
-        int number_of_fields = shapefile.getDBF_fieldCount();
-
-        for (int i = 0; i < number_of_shapes; i++) {
-            MultiPolygon jtsPolygon;
-
-            ShpPolygon shape = shapefile.getSHP_shape(i);
-            String[] shape_info = shapefile.getDBF_record(i);
-
-            ShpShape.Type type = shape.getShapeType();
-            int number_of_vertices = shape.getNumberOfPoints();
-            int number_of_polygons = shape.getNumberOfParts();
-            int record_number = shape.getRecordNumber();
-
-            double[][][] listOfPolygons = shape.getPointsAs3DArray();
-
-            Polygon[] polygons = null;
-            for (int j = 0; j < listOfPolygons.length; j++) {
-                if (j == 0) {
-                    polygons = new Polygon[listOfPolygons.length];
-                }
-                Coordinate[] coordinates = null;
-
-                for (int h = 0; h < listOfPolygons[j].length; h++) {
-                    // Coordinate[] coordinates=null;
-                    if (h == 0) {
-                        coordinates = new Coordinate[listOfPolygons[j].length];
-                    }
-                    // System.out.println(listOfPolygons[j][h][0]+" "+listOfPolygons[j][h][1]);
-
-                    coordinates[h] = (new Coordinate(listOfPolygons[j][h][0], listOfPolygons[j][h][1]));
-
-                }
-                LinearRing linear = fact.createLinearRing(coordinates);
-                // System.out.println(fact.createPolygon(linear, null));
-                polygons[j] = fact.createPolygon(linear, null);
-                // System.out.println(polygons[i]);
-
-            }
-
-            jtsPolygon = fact.createMultiPolygon(polygons);
-
-            // System.out.printf("\nSHAPE[%2d] - %s\n", i, type);
-            // System.out
-            // .printf("  (shape-info) record_number = %3d; vertices = %6d; polygons = %2d\n",
-            // record_number, number_of_vertices,
-            // number_of_polygons);
-
-            GeometryTimeZone gtz = new GeometryTimeZone(jtsPolygon, shape_info[0].trim());
-
-            geometryTimeZoneList.addToIndex(gtz);
-
-        }
-        geometryTimeZoneList.buildIndex();
-
-    }
-
-    public void unLoadAdminBoundaryData() {
-        geometryTimeZoneList = null;
-    }
 }

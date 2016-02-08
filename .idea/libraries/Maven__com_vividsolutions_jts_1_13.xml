@@ -5,9 +5,11 @@
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/com/vividsolutions/jts/1.13/jts-1.13-javadoc.jar!/" />
+      <root url="file://$PROJECT_DIR$/../diewald_shapeFileReader/diewald_shapeFileReader/reference" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/com/vividsolutions/jts/1.13/jts-1.13-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/../diewald_shapeFileReader/diewald_shapeFileReader/src" />
     </SOURCES>
   </library>
 </component>

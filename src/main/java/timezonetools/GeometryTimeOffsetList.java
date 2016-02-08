@@ -14,7 +14,7 @@ public class GeometryTimeOffsetList extends ArrayList<GeometryTimeOffset> {
 	GeometryFactory fact = new GeometryFactory();
 
 	public void addToIndex(GeometryTimeOffset geometryTimeOffset) {
-		rtree.insert(geometryTimeOffset.getMultiPolygon().getEnvelopeInternal(),
+		rtree.insert(geometryTimeOffset.getGeometry().getEnvelopeInternal(),
 		        geometryTimeOffset);
 	}
 
@@ -22,8 +22,7 @@ public class GeometryTimeOffsetList extends ArrayList<GeometryTimeOffset> {
 		rtree.build();
 	}
 
-	public double searchIndex(Coordinate coordinate) {
-
+	public Double searchIndex(Coordinate coordinate) {
 		Point p = fact.createPoint(coordinate);
 		List hitList = rtree.query(p.getEnvelopeInternal());
 
@@ -38,7 +37,7 @@ public class GeometryTimeOffsetList extends ArrayList<GeometryTimeOffset> {
 		if (hitList.size() > 1) {
 			for (Object obj : hitList) {
 			    GeometryTimeOffset geometryTimeOffset = (GeometryTimeOffset) obj;
-				MultiPolygon mp = geometryTimeOffset.getMultiPolygon();
+				Geometry mp = geometryTimeOffset.getGeometry();
 
 				for (int o = 0; o < mp.getNumGeometries(); o++) {
 					Polygon poly = (Polygon) mp.getGeometryN(o);
@@ -51,6 +50,6 @@ public class GeometryTimeOffsetList extends ArrayList<GeometryTimeOffset> {
 		} 
 		
 		//found nothing so returns nonsense
-		return -999.0;
+		return null;
 	}
 }
