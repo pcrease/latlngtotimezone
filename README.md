@@ -15,7 +15,7 @@ Example
         double offsetHours=timeZoneGeoTool.getOffsetFromCoordinate(new LatLngCoordinate(48.8567,2.3508 ));//Paris
 
 		
-		System.out.println("Admin name of timezone found = "+tz +". Offset in hours name of timezone found =  "+offsetHours);
+		System.out.println("Offset in hours name of timezone found =  "+offsetHours);
 ```
 
 this will return an offset in hours (1.0 for Paris), and could be then entered into the Java TimeZone or Calendar object of your choice (http://docs.oracle.com/javase/7/docs/api/java/util/TimeZone.html) to create the correct datetime from a UTC timestamp.
