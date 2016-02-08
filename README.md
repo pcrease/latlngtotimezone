@@ -3,8 +3,9 @@ latlngtotimezone
 
 A simple java library that allows a latitude, longitude coordinates to be translated to a java offset in hours. The library is released under an MIT License.
 
-The API consists of a single object class that can be used to search for the time zone string or the offset in hours using a pair of WGS84 latitude, longitude coordinates.
-Example :
+The API consists of a single object class that can be used to search for the time zone string or the offset in hours using a pair of WGS84 latitude, longitude coordinates. It uses an in-memory RTree to speed up the queries.
+
+Example 
 
 ```
 	    TimeZoneGeoTool timeZoneGeoTool = new TimeZoneGeoTool();
