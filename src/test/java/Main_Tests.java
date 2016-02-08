@@ -16,7 +16,9 @@ public class Main_Tests {
     private final static LatLngCoordinate outsideExtentlatLngCoordinate = new LatLngCoordinate(488.8567,2.3508 );
     private final static double parisOffset = 1.0;
 
-    @Test
+
+    //basic tests to check that the correct values are returned
+    @Test(expected=NullPointerException.class)
     public void basicTest() {
 
 
